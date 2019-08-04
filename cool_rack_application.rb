@@ -12,6 +12,7 @@ class CoolRackApplication
   end
 end
 
+# middlewares are suitable to do somethings befeore the requests hit the final application
 class PatchBlockingMiddleware
   def initialize(app)
     @app = app
@@ -28,6 +29,7 @@ class PatchBlockingMiddleware
   end
 end
 
+# builders are how you'd combine middlewares and rack apps
 app = Rack::Builder.new do
   use PatchBlockingMiddleware
   run CoolRackApplication.new
